@@ -19,14 +19,16 @@ void setup() {
   pinMode(latchPin, OUTPUT);
   pinMode(dataPin, OUTPUT);
   pinMode(clockPin, OUTPUT);
-  Serial.begin(9600);
-  Serial.println("reset");
+  //Serial.begin(9600);
+  //Serial.println("reset");
 }
 
 void loop() {
+  digitalWrite(LED_BUILTIN, HIGH);
   digitalWrite(latchPin, HIGH);
-  shiftOut(dataPin, clockPin, LSBFIRST, 1);
+  shiftOut(dataPin, clockPin, LSBFIRST, 16);
   delay(1000);
   digitalWrite(latchPin, LOW);
+  digitalWrite(LED_BUILTIN, LOW);
   delay(300);
 }
