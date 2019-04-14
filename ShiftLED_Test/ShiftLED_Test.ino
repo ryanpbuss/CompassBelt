@@ -90,12 +90,37 @@ void sequentialLight(int switchDelay = 250){
   */
 }
 
+void allPins(int switchDelay = 200, boolean allOn = true) {
+  int pinsOut = 0;
+  if (allOn) {
+    pinsOut = 255;
+  }
+  
+  digitalWrite(masterReset, HIGH);
+  digitalWrite(latchPin, LOW);
+  shiftOut(dataPin, clockPin, LSBFIRST, pinsOut);
+  digitalWrite(latchPin, HIGH);
+  delay(switchDelay);
+  digitalWrite(masterReset, LOW);
+  digitalWrite(masterReset, HIGH);
+}
+
 
 void loop() {
-  //binaryCounter(75);
-  //delay(500);
-  sequentialLight(250);
-  delay(500);
+
+  for (int r = 0; r < 4; r++){
+    allPins(200, true);
+    allPins(200, false);
+  }
+  
+  for (int r = 1; r < 5; r++){
+    sequentialLight(250);
+  }
+  
+  binaryCounter(75);
+  digitalWrite(masterReset, LOW);
+  digitalWrite(masterReset, HIGH);
+  delay(300);
 
   /*
   digitalWrite(clockPin, LOW);
