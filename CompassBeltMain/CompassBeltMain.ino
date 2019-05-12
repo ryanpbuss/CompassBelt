@@ -1,5 +1,4 @@
-/* Testing Playground
- Used to test components
+/* Compass Belt 
  Author: Ryan Buss
  April 2019
 */
@@ -157,7 +156,7 @@ int Magnetometer_To_Motor(int16_t mx, int16_t my, int16_t mz){
   //takes the magnetometer data and returns which motor (or light) to activate
   // formulat to convert the x and y into a vector heading
   float az;
-  az = abs( atan2(my, mx) * 180 / M_PI );
+  az = atan2(mz, my) * (180 / M_PI) ;
   Serial.print("az: ");
   Serial.print(az, 3);
   Serial.print("\t");
@@ -253,14 +252,17 @@ void loop()
     digitalWrite(masterReset, LOW);
     digitalWrite(masterReset, HIGH); //clear whatever's in the shift registers.
     shiftWritePin(currentMotor, true);
+     Serial.print("currentMotor: ");
+    Serial.print(currentMotor);
+    Serial.print("\t");
   }
   
   // Magnetometer
-  Serial.print (mx+200,DEC); 
+  Serial.print (mx,DEC); 
   Serial.print ("\t");
-  Serial.print (my-70,DEC);
+  Serial.print (my,DEC);
   Serial.print ("\t");
-  Serial.print (mz-700,DEC);  
+  Serial.print (mz,DEC);  
   Serial.print ("\t");
   
   

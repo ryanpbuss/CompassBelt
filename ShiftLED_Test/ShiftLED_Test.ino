@@ -40,6 +40,7 @@ void shiftWritePin(int Pin = 1, boolean State = true){
 }
 
 void binaryCounter(int switchDelay = 250) {
+  digitalWrite(masterReset, LOW);
   digitalWrite(masterReset, HIGH);
   for (int j = 0; j < 256; j++) {
     //ground latchPin and hold low for as long as you are transmitting
